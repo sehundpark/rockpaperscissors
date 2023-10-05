@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const getComputerChoice = () => {
+            const randomInt = [Math.floor(Math.random() * 3)];
+            const word = [
+                "rock",
+                "paper",
+                "scissors"
+            ];
+            const roChamBo = word[randomInt];
+            return roChamBo;
+        }
+        const playRound = (playerChoice, computerSelection) => {
+            if (!["rock", "paper", "scissors"].includes(playerChoice)) {
+            // if (playerChoice != "rock" && playerChoice != "paper" && playerChoice != "scissors") {
+                return "Not valid.";
+            } else if (playerChoice == computerSelection) {
+                return "Tie.";
+            } else if (
+                (playerChoice == "rock" && computerSelection == "scissors") ||
+                (playerChoice == "paper" && computerSelection == "rock") ||
+                (playerChoice == "scissors" && computerSelection == "paper")
+            ) {
+                return "You win!";
+            } else {
+                return "You lose..";
+            }
+        }
+        const playerSelection = () => {
+            const playerChoice = prompt("Rock, Paper, or Scissors").toLowerCase();
+            return playerChoice;
+
+            // OR
+
+            return prompt("Rock, Paper, Scissors").toLowerCase();
+            // const computerChoice = getComputerChoice();
+            // console.log(playerChoice);
+            // console.log(computerChoice);
+            // const result = playRound(playerChoice, computerChoice);
+            // console.log(result);
+
+            // document.getElementsByClassName("results")[0].innerHTML = result;
+
+            // div.result  {
+            //   background-color: white;
+            // }
+        }
+       const computerSelection = getComputerChoice();
+        const game = () => {
+            //call playround 5 times, keep score, report winner or loser
+            playerWins = 0;
+            computerWins = 0;
+
+            for (let i = 0; i < 5; i++) {
+                const choice = playerSelection();
+                const computerChoice = getComputerChoice();
+                const roundResults = playRound(choice, computerChoice);
+                if (roundResults === "You win!") {
+                    playerWins++;
+                    // console.log("You win");
+                    console.log(`You win, you chose ${choice} against ${computerChoice}`);
+                }
+                else if (roundResults === "You lose..") {
+                    computerWins++;
+                    //console.log("You lose");
+                    console.log(`You lose, you chose ${choice} against ${computerChoice}`);
+                }
+                else if (roundResults === "Tie.") {
+                    //console.log("Tie!");
+                    console.log(`You tied, you both chose ${choice}`);
+                } else {
+                    console.log("Disqualified! Round doesn't count.")
+                }
+            }
+            //console.log(`Player wins = ${playerWins}, Computer Wins = ${computerWins}`);
+            if (playerWins > computerWins) {
+                console.log("Winner Winner Chicken Dinner!");
+            } else if (computerWins > playerWins) {
+                console.log("Wah wah wahhhhhh ;(");
+            } else {
+                console.log("Try again!");
+            }
+            // let numberOfWinsOrLosses = 0;
+            // while (numberOfWinsOrLosses < 5) {
+
+            // }
+        }
+    </script>
+</head>
+<body>
+<!--    <button onclick="playerSelection();">Click to start</button>
+    <div class="results"></div>
+-->
+</body>
+</html>
